@@ -1,0 +1,13 @@
+.value {
+    font-size: -webkit-xxx-large!important;
+}
+.text {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    margin-top: 0
+}
+
+.title {
+    font-size: 30px
+}

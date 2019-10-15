@@ -1,0 +1,11 @@
+.indicador {
+    max-width: 400px;
+    width: -webkit-fill-available;
+    margin: 1px;
+  }
+
+  hr{
+    color: white;
+    border-color : white
+  }
+  
