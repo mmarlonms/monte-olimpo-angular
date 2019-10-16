@@ -1,39 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { MatCardModule, MatMenuModule, MatListModule, MatButtonModule, MatIconModule, MatSidenavModule } from '@angular/material'
 
 import { MaterialModule} from './material-module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 import { fromEventPattern } from 'rxjs';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SidebarComponent } from './sidebar/sidebar.component';
-
-import { DashboardComponent} from './dashboard/dashboard.component';
-import { IndicadorComponent } from './indicador/indicador.component'
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
+import { DashboardComponent} from './pages/dashboard/dashboard.component';
+import { IndicadorComponent } from './components/indicador/indicador.component';
+import { GodComponent } from './pages/god/god.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         SidebarComponent,
+        
         DashboardComponent,
-        IndicadorComponent
+        IndicadorComponent,
+                GodComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatCardModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
+        HttpClientModule,
         LayoutModule,
         MatToolbarModule,
         MaterialModule
@@ -42,3 +40,5 @@ import { IndicadorComponent } from './indicador/indicador.component'
     bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

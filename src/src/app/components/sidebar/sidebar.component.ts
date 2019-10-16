@@ -19,7 +19,7 @@ export class SidebarComponent {
 
     public menu = [
         {name : 'index', link: '/app/dashboard', icon: 'dashboard'},
-
+        {name : 'god', link: '/app/god', icon: 'brightness_7'},
     ]
 
   constructor(private breakpointObserver: BreakpointObserver) {}
