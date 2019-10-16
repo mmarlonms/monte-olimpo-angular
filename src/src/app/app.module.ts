@@ -18,6 +18,9 @@ import { DashboardComponent} from './pages/dashboard/dashboard.component';
 import { IndicadorComponent } from './components/indicador/indicador.component';
 import { GodComponent } from './pages/god/god.component'
 
+import { GodService } from './services/god-service.service'
+import { UtilService } from './services/util'
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -36,7 +39,7 @@ import { GodComponent } from './pages/god/god.component'
         MatToolbarModule,
         MaterialModule
     ],
-    providers: [],
+    providers: [GodService,UtilService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
