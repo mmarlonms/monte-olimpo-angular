@@ -22,35 +22,35 @@ export class UtilService {
     public handleError<T>(operation = 'operation', result?: T) {
 
         function showCoreExceptionNotification(message, boddy) {
+            this.log("Message: "+message +" | boddy: "+boddy);
+            // $.notify({
+            //     icon: "add_alert",
+            //     message: "<b>" + message + "<b/><br /> " + boddy
 
-            $.notify({
-                icon: "add_alert",
-                message: "<b>" + message + "<b/><br /> " + boddy
-
-            }, {
-                type: 'warning',
-                timer: 4000,
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                }
-            });
+            // }, {
+            //     type: 'warning',
+            //     timer: 4000,
+            //     placement: {
+            //         from: 'top',
+            //         align: 'right'
+            //     }
+            // });
         }
 
         function showExceptionNotification(message, boddy) {
+            this.log("Message: "+message +" | boddy: "+boddy);
+            // $.notify({
+            //     icon: "add_alert",
+            //     message: "<b>" + message + "<b/><br /> " + boddy
 
-            $.notify({
-                icon: "add_alert",
-                message: "<b>" + message + "<b/><br /> " + boddy
-
-            }, {
-                type: 'danger',
-                timer: 4000,
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                }
-            });
+            // }, {
+            //     type: 'danger',
+            //     timer: 4000,
+            //     placement: {
+            //         from: 'top',
+            //         align: 'right'
+            //     }
+            // });
         }
 
 

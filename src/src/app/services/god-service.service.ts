@@ -14,20 +14,17 @@ import { God } from '../models/god';
 })
 export class GodService {
 
-    private apiUrl = '';
+    private apiUrl = 'https://localhost:5001/api/v1/god/getallgods';
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
 
-
     constructor(private http: HttpClient, private utilService : UtilService) { }
-
-
 
     getAllGods(): Observable<God[]> {
         return this.http.get<God[]>(this.apiUrl)
           .pipe(
-            tap(_ => this.utilService.log('fetched Produtoes')),
+            tap(_ => this.utilService.log('fetched Produtos')),
             catchError(this.utilService.handleError<God[]>('getGods', []))
           );
       }
