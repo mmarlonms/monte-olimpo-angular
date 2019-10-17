@@ -13,16 +13,11 @@ export class UtilService {
     public log(message: string) {
         console.log(`ProdutoService: ${message}`);
     }
-    /**
-         * Handle Http operation that failed.
-         * Let the app continue.
-         * @param operation - name of the operation that failed
-         * @param result - optional value to return as the observable result
-         */
+
     public handleError<T>(operation = 'operation', result?: T) {
 
         function showCoreExceptionNotification(message, boddy) {
-            this.log("Message: "+message +" | boddy: "+boddy);
+            this.log("Message: " + message + " | boddy: " + boddy);
             // $.notify({
             //     icon: "add_alert",
             //     message: "<b>" + message + "<b/><br /> " + boddy
@@ -38,7 +33,7 @@ export class UtilService {
         }
 
         function showExceptionNotification(message, boddy) {
-            this.log("Message: "+message +" | boddy: "+boddy);
+            this.log("Message: " + message + " | boddy: " + boddy);
             // $.notify({
             //     icon: "add_alert",
             //     message: "<b>" + message + "<b/><br /> " + boddy
@@ -69,5 +64,4 @@ export class UtilService {
             return of(result as T);
         };
     }
-
 }
