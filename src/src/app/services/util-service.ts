@@ -50,7 +50,8 @@ export class UtilService {
 
 
         return (error: any): Observable<T> => {
-            debugger
+            
+            
 
             if (error.status == 400) {
                 showCoreExceptionNotification(error.error.errors[0].key, error.error.errors[0].message);

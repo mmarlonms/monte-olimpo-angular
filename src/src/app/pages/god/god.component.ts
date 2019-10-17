@@ -52,34 +52,58 @@ export class GodComponent implements OnInit {
         }
     }
 
-    openGodCrateUpdate(): void {
+    openModalGodCrateUpdate(id?: number): void {
+
+        var god: God = new God();
+
+        if (id != null) {
+            god = this.gods.find(x => x.id == id)
+        }
+
         const dialogRef = this.dialog.open(GodModalCreateUpdate, {
             width: '60%',
-            data: { name: "TEste", animal: "TEste" }
+            data: god
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+
+            if (result != undefined) {
+                if (id == null) {
+                    this.godService.addGod(result).subscribe(
+                        god => {
+                            if (god != undefined)
+                                this.getGods();
+                        }
+                    );
+                } else {
+                    this.godService.updateGod(result).subscribe(
+                        god => {
+                            if (god != undefined)
+                                this.getGods();
+                        }
+                    );
+                }
+            }
         });
     }
 
-    openGodDelete(id: number): void {
+    openModalGodDelete(id: number): void {
         const dialogRef = this.dialog.open(GodModalDelete, {
             width: '60%',
-            data: this.gods.find( x => x.id == id)
+            data: this.gods.find(x => x.id == id)
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            debugger
+
             if (result != undefined && result) {
                 console.log(`Dialog result: ${result}`);
-        
+
                 this.godService.deleteGod(id).subscribe(
-                  p => {
-                    this.getGods();
-                  }
+                    p => {
+                        this.getGods();
+                    }
                 );
-              }
+            }
         });
     }
 }

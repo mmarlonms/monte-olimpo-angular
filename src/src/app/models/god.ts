@@ -1,6 +1,6 @@
 
 export class God{
-    id: number
-    nome : string;
+    id?: number = null;
+    nome : string = '';
     idade :  number;
 }

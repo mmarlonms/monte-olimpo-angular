@@ -22,7 +22,7 @@ import { GodService } from './services/god-service.service'
 import { UtilService } from './services/util-service';
 import { GodModalCreateUpdate } from './components/god-modal/god-modal-create-update/god-modal-create-update.component'
 import { GodModalDelete } from './components/god-modal/god-modal-delete/god-modal-delete.component';
-
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -41,7 +41,8 @@ import { GodModalDelete } from './components/god-modal/god-modal-delete/god-moda
         HttpClientModule,
         LayoutModule,
         MatToolbarModule,
-        MaterialModule
+        MaterialModule,
+        FormsModule
     ],
     entryComponents: [GodModalCreateUpdate,GodModalDelete],
     providers: [GodService, UtilService],
