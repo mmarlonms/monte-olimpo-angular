@@ -77,6 +77,7 @@ import {MatTreeModule} from '@angular/material/tree';
     MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    
     MatSortModule,
     MatTableModule,
     MatTabsModule,

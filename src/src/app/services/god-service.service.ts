@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Response } from '@angular/http';
-
-import { Observable, of, from } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable} from 'rxjs';
+import { catchError,  tap } from 'rxjs/operators';
 
 import { UtilService } from './util-service'
 
@@ -13,7 +11,6 @@ import { God } from '../models/god';
     providedIn: 'root'
 })
 export class GodService {
-
 
     private apiUrl = 'https://localhost:5001/api/v1/god/';
     private httpOptions = {
@@ -27,6 +24,22 @@ export class GodService {
             .pipe(
                 tap(_ => this.utilService.log('fetched Gods')),
                 catchError(this.utilService.handleError<God[]>('getGods', []))
+            );
+    }
+
+    getCoreException(): Observable<God> {
+        return this.http.get<any>(this.apiUrl + "getcoreexception")
+            .pipe(
+                tap(_ => this.utilService.log('fetched Gods')),
+                catchError(this.utilService.handleError<God>('getCoreException'))
+            );
+    }
+
+    getException(): Observable<God> {
+        return this.http.get<God>(this.apiUrl + "getexception")
+            .pipe(
+                tap(_ => this.utilService.log('fetched Gods')),
+                catchError(this.utilService.handleError<God>('getException'))
             );
     }
 
@@ -49,7 +62,6 @@ export class GodService {
         ); 
     }
 
-    
      /** INSERT: Add the God in the server */
      addGod (God: God): Observable<God> {
          

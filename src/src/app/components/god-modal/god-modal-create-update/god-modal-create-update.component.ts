@@ -9,17 +9,14 @@ import { God } from '../../../models/god';
 })
 export class GodModalCreateUpdate {
 
-
     constructor(
         public dialogRef: MatDialogRef<GodModalCreateUpdate>,
         @Inject(MAT_DIALOG_DATA) public data: God) {
             
     }
 
-
     onNoClick(): void {
         this.data;
-        debugger
         this.dialogRef.close();
     }
 }

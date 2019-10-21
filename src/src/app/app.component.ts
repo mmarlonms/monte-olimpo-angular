@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
+  template: `<simple-notifications></simple-notifications><router-outlet></router-outlet>`,
 })
 export class AppComponent {
   title = 'monte-olimpo-angular';

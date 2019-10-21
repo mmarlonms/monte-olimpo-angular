@@ -29,6 +29,11 @@ export class GodComponent implements OnInit {
 
     }
 
+    ngOnInit() {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    }
+
     getGods(): void {
         this.godService.getAllGods()
             .subscribe(data => {
@@ -37,11 +42,6 @@ export class GodComponent implements OnInit {
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
             });
-    }
-
-    ngOnInit() {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
     }
 
     applyFilter(filterValue: string) {
@@ -106,5 +106,14 @@ export class GodComponent implements OnInit {
             }
         });
     }
-}
 
+    callException(): void {
+        
+        this.godService.getException().subscribe();
+    }
+    
+    callCoreException(): void 
+    {
+        this.godService.getCoreException().subscribe();
+    }
+}

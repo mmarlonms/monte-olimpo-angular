@@ -24,6 +24,8 @@ import { GodModalCreateUpdate } from './components/god-modal/god-modal-create-up
 import { GodModalDelete } from './components/god-modal/god-modal-delete/god-modal-delete.component';
 import { FormsModule }   from '@angular/forms';
 
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,7 +34,8 @@ import { FormsModule }   from '@angular/forms';
         IndicadorComponent,
         GodComponent,
         GodModalCreateUpdate,
-        GodModalDelete
+        GodModalDelete,
+
     ],
     imports: [
         BrowserModule,
@@ -42,7 +45,8 @@ import { FormsModule }   from '@angular/forms';
         LayoutModule,
         MatToolbarModule,
         MaterialModule,
-        FormsModule
+        FormsModule,
+        SimpleNotificationsModule.forRoot()
     ],
     entryComponents: [GodModalCreateUpdate,GodModalDelete],
     providers: [GodService, UtilService],

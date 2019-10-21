@@ -1,67 +1,46 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
-declare var $: any;
+import { NotificationsService, NotificationType } from 'angular2-notifications';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UtilService {
+export class UtilService  {
+    
+    temp= {
+        timeOut: 5000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true,
+        animate: 'fromRight'
+    };
+    
+    constructor( private _notifications: NotificationsService) { }
 
     public log(message: string) {
         console.log(`ProdutoService: ${message}`);
     }
 
+    public showCoreExceptionNotification(message, boddy) {	
+		this._notifications.create(message, boddy, NotificationType.Warn, this.temp)
+    }
+
+    public showExceptionNotification(message, boddy) {
+		this._notifications.create(message, boddy, NotificationType.Error, this.temp)
+    }
+
     public handleError<T>(operation = 'operation', result?: T) {
-
-        function showCoreExceptionNotification(message, boddy) {
-            this.log("Message: " + message + " | boddy: " + boddy);
-            // $.notify({
-            //     icon: "add_alert",
-            //     message: "<b>" + message + "<b/><br /> " + boddy
-
-            // }, {
-            //     type: 'warning',
-            //     timer: 4000,
-            //     placement: {
-            //         from: 'top',
-            //         align: 'right'
-            //     }
-            // });
-        }
-
-        function showExceptionNotification(message, boddy) {
-            this.log("Message: " + message + " | boddy: " + boddy);
-            // $.notify({
-            //     icon: "add_alert",
-            //     message: "<b>" + message + "<b/><br /> " + boddy
-
-            // }, {
-            //     type: 'danger',
-            //     timer: 4000,
-            //     placement: {
-            //         from: 'top',
-            //         align: 'right'
-            //     }
-            // });
-        }
-
 
         return (error: any): Observable<T> => {
             
-            
-
             if (error.status == 400) {
-                showCoreExceptionNotification(error.error.errors[0].key, error.error.errors[0].message);
+                this.showCoreExceptionNotification(error.error.errors[0].key, error.error.errors[0].message);
             } else {
-                showExceptionNotification("Ocorreu um erro não esperado.", "Favor verificar junto ao administrador do sistema. LogEntry: " + error.error.logEntryId);
+                this.showExceptionNotification("Ocorreu um erro não esperado.", "Favor verificar junto ao administrador do sistema. LogEntry: " + error.error.logEntryId);
             }
 
             this.log(`${operation} failed: ${error.message}`);
 
-            // Let the app keep running by returning an empty result.
             return of(result as T);
         };
     }
