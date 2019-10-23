@@ -35,7 +35,10 @@ export class UtilService  {
             
             if (error.status == 400) {
                 this.showCoreExceptionNotification(error.error.errors[0].key, error.error.errors[0].message);
-            } else {
+            } else if(error.status == 401 || error.status == 403){
+                this.showExceptionNotification("Não Autorizado", "Ops.. você não pode fazer isso!");  
+            }
+             else {
                 this.showExceptionNotification("Ocorreu um erro não esperado.", "Favor verificar junto ao administrador do sistema. LogEntry: " + error.error.logEntryId);
             }
 

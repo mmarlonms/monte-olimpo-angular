@@ -7,7 +7,7 @@ import { MaterialModule } from './material-module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { fromEventPattern } from 'rxjs';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -25,6 +25,11 @@ import { GodModalDelete } from './components/god-modal/god-modal-delete/god-moda
 import { FormsModule }   from '@angular/forms';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { AuthGuard, AuthService, AuthInterceptor } from './services/auth-service';
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
     declarations: [
@@ -35,7 +40,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
         GodComponent,
         GodModalCreateUpdate,
         GodModalDelete,
-
+        LoginComponent,
+        SignupComponent,
+        LogoutComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,7 +56,13 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
         SimpleNotificationsModule.forRoot()
     ],
     entryComponents: [GodModalCreateUpdate,GodModalDelete],
-    providers: [GodService, UtilService],
+    providers: [GodService, UtilService, AuthService,
+        AuthGuard,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true,
+        },],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
