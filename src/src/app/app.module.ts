@@ -22,13 +22,14 @@ import { GodService } from './services/god-service.service'
 import { UtilService } from './services/util-service';
 import { GodModalCreateUpdate } from './components/god-modal/god-modal-create-update/god-modal-create-update.component'
 import { GodModalDelete } from './components/god-modal/god-modal-delete/god-modal-delete.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  }   from '@angular/forms';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AuthGuard, AuthService, AuthInterceptor } from './services/auth-service';
 import { LogoutComponent } from './components/logout/logout.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -53,6 +54,8 @@ import { LogoutComponent } from './components/logout/logout.component';
         MatToolbarModule,
         MaterialModule,
         FormsModule,
+        ReactiveFormsModule ,
+        FlexLayoutModule,
         SimpleNotificationsModule.forRoot()
     ],
     entryComponents: [GodModalCreateUpdate,GodModalDelete],
