@@ -25,6 +25,14 @@ export class UtilService  {
 		this._notifications.create(message, boddy, NotificationType.Warn, this.temp)
     }
 
+    public showValidationNotification(message, mesages) {	     
+
+        mesages.forEach(element => {
+            var boddy = element.key +" : "+ element.message;
+            this._notifications.create(message, boddy, NotificationType.Warn, this.temp)
+        });
+    }
+
     public showExceptionNotification(message, boddy) {
 		this._notifications.create(message, boddy, NotificationType.Error, this.temp)
     }
@@ -32,11 +40,13 @@ export class UtilService  {
     public handleError<T>(operation = 'operation', result?: T) {
 
         return (error: any): Observable<T> => {
-            
+            debugger
             if (error.status == 400) {
                 this.showCoreExceptionNotification(error.error.errors[0].key, error.error.errors[0].message);
             } else if(error.status == 401 || error.status == 403){
                 this.showExceptionNotification("Não Autorizado", "Ops.. você não pode fazer isso!");  
+            }else if (error.status == 420) {
+                this.showValidationNotification("Validação de entrada", error.error.errors);
             }
              else {
                 this.showExceptionNotification("Ocorreu um erro não esperado.", "Favor verificar junto ao administrador do sistema. LogEntry: " + error.error.logEntryId);
